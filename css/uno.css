@@ -92,6 +92,21 @@ mathpart {
 		margin-right: 10px;
 }
 
+.blog-quote {
+		font-size: 1em;
+		color: #bbb;
+    text-align: center;
+    }
+
+.blog-quote-by {
+		display: block;
+		font-size: 0.8em;
+    padding-top: 5px;
+    text-align: center; }
+
+.blog-quote-by a {
+	color: #999 !important;}
+
 
 /*
  * Foundation Icons v 3.0

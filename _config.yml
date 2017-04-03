@@ -1,6 +1,10 @@
 # Site settings
 title: zachmoshe.com
 description: 'All about data, data mining and new technologies'
+quote:
+  text: 'Computers are useless. They can only give you answers.'
+  by: 'Pablo Picasso, 1960s'
+  url: 'http://en.wikiquote.org/wiki/Pablo_Picasso#1960s'
 url: 'http://zachmoshe.com'
 baseurl: '/'
 google_analytics: 'UA-54835912-3'

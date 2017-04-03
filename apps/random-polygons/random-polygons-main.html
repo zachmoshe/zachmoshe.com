@@ -1,0 +1,64 @@
+<html>
+<head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script type="text/javascript" src="random-polygons-app.js"/></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+	<script src="random-polygons-common.js"></script>
+</head>
+<body ng-app="randomPolygonsApp">
+
+		<!--[if lte IE 8]>
+		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		<div ng-controller="polygonsCtrl">
+
+			<div class="container-fluid" ng-controller="polygonsCtrl">
+				<div class="row">
+					<div class="col-xs-9">
+						<canvas polygons-canvas style="width: 100%; display: block; border: 1px solid black; margin-bottom: 1em;"></canvas>
+					</div>
+					<div class="col-xs-3">
+						<button class="btn btn-lg btn-primary" ng-click="reset(grid_size, grid_pct)">
+							<span class="glyphicon glyphicon-repeat"></span>
+							Re-Generate
+						</button>
+						<form style="margin-top:2em;">
+							<div class="form-group">
+								<label for="formInputN">N</label>
+								<select class="form-control" id="formInputN"
+								ng-model="grid_size"
+								ng-options="x for x in gridSizes"
+								ng-change="reset(grid_size, grid_pct)">
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="formInputP">p</label>
+							<div>
+								<input style="display: inline; width: 60%" class="" id="formInputP" ng-model="grid_pct"
+									type="range" min="0" max="1" step="0.01"
+									ng-change="reset(grid_size, grid_pct)"/>
+								<input style="display: inline; width: 30%; border: 0px; box-shadow: none"  class="form-control" ng-model="grid_pct"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="formInputEstBS">Estimated average block size: {{ estAvgBlockSize(grid_size, grid_pct) | number:2 }}</label>
+						</div>
+						<div style="width: 75px; height: 55px; background: url(/images/articles/random-polygons/blocks-examples.png) 0 0; margin: auto; background-position-y: -{{getBlockExampleId(estAvgBlockSize(grid_size, grid_pct)) * 55}}px"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

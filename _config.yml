@@ -1,0 +1,44 @@
+# Site settings
+title: zachmoshe.com
+description: 'All about data, data mining and new technologies'
+url: 'http://zachmoshe.com'
+baseurl: '/'
+google_analytics: 'UA-54835912-3'
+disqus_shortname: 'zachmoshe'
+
+author:
+  name: 'Zach Moshe'
+  email: zachmoshe@gmail.com
+  twitter_username: zachmoshe
+  facebook_username: zach.moshe
+  github_username: zachmoshe
+  linkedin_username: zachmoshe
+  stackoverflow_username: zach-moshe
+  stackoverflow_userid: 1643257
+
+defaults:
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+        layout: 'post'
+
+# Build settings
+destination: _site
+paginate: 10
+permalink: :year/:month/:day/:title
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
+highlighter: rouge
+#markdown: kramdown
+
+kramdown:
+  # use Github Flavored Markdown
+  input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
+
+gems: ['jekyll-paginate']
+exclude: ['LICENSE', 'README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']

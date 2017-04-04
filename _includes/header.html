@@ -106,9 +106,9 @@
 
 
         {% if page.layout == 'post' %}
-          <hr class="panel-cover__divider panel-cover__divider--secondary">
-
           <div class="panel-cover__more-links">
+            <hr class="panel-cover__divider panel-cover__divider--secondary">
+
             More from {{ site.title }}:
             <ul>
               {% assign promoted_posts = site.posts | sort: 'date' | reverse %}

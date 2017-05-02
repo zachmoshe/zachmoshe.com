@@ -57,3 +57,7 @@ pickle.dumps(m)
 {% endhighlight %}
 
 I have a general python module that I always import on all my notebooks and contains some stuff I always need so I just added it there. You can just add to one of your initializers files or the beginning of your script.
+
+***
+
+_UPDATE 09/04/2017: If you're running on Windows and encountered an `OSError: Unable to create file` error, you might want to try setting `delete=False` in the `NamedTemporaryFile` constructor in both functions. Thanks **Henry Thornton** for pointing this out! (see comments below)_

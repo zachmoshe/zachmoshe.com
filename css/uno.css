@@ -12,6 +12,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	font: inherit;
 	vertical-align: baseline; }
 
+iframe {
+	display: block;
+	margin: auto; }
+
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block; }
@@ -1027,7 +1032,8 @@ h1 {
 	letter-spacing: .05em; }
 
 h2 {
-	font-size: 2.2em; }
+	font-size: 2.2em;
+	margin-top: 1.5em; }
 
 h3 {
 	font-size: 1.8em; }
@@ -1329,7 +1335,8 @@ section.post {
 
 .panel-main__content {
 	max-width: 620px;
-	margin: 0 auto; }
+	margin: 0 auto;
+	padding-top: 20px;}
 
 .panel-main__content--fixed {
 	width: 480px;
@@ -1654,7 +1661,7 @@ input[type="tel"] {
 @media all and (max-width: 960px) {
 	.panel-cover__more-links {
 		display: none; }
-		
+
 	.btn-mobile-menu {
 		display: block; }
 

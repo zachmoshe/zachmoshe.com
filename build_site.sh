@@ -1,3 +1,9 @@
 #! /bin/bash
 
-JEKYLL_ENV=production bundle exec jekyll build
+env=$1
+
+if [ -z "$env" ]; then
+	env="production"
+fi
+
+JEKYLL_ENV=$env bundle exec jekyll build

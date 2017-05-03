@@ -2,6 +2,9 @@
 layout: default
 ---
 <article class="post-container post-container--single">
+  {% if jekyll_environment != "production" %}
+    {% include drafts_header.html %}
+  {% endif %}
   <header class="post-header">
     <div class="post-meta">
       <time datetime="{{ page.date | date: "%-d %b %Y" }}" class="post-meta__date date">{{ page.date | date: "%-d %b %Y" }}</time> &#8226; <span class="post-meta__tags">on {% for tag in page.tags %}<a href="{{ site.baseurl }}tags/#{{ tag }}">{{ tag }}</a> {% endfor %}</span>

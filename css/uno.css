@@ -72,6 +72,14 @@ mathpart {
 		padding: 0.5em;
 	  padding-top: 25px;}
 
+
+.zachmoshe-drafts {
+	border: 2px solid red;
+	background: bisque;
+	padding: 1em;
+	margin-bottom: 2em;
+}
+
 .panel-cover__more-links {
 		margin: 40px 10px; }
 

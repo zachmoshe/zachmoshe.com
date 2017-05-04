@@ -193,7 +193,7 @@ To summarize, hyper-parameters for building the model and the values I've used a
 
 * base_output_layer: 'block5_pool' (entry-point on VGG16)
 * num_detectors: 128
-* fc_detectors: [] (practically disabled)
+* fc_detectors: \[\] (practically disabled)
 * batchnorm: False
 * dropout: 0.5
 * reg_penalty: 0.001 (L2 regularization value for the detectors weights)

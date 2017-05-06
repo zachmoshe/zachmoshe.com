@@ -2,7 +2,7 @@
 layout: default
 ---
 <article class="post-container post-container--single">
-  {% if jekyll_environment != "production" %}
+  {% if jekyll.environment == "development" %}
     {% include drafts_header.html %}
   {% endif %}
   <header class="post-header">
@@ -17,4 +17,7 @@ layout: default
   </section>
   {% if page.comments != false and site.disqus_shortname %}<section id="disqus_thread"></section><!-- /#disqus_thread -->{% endif %}
 </article>
-{% if page.comments != false %}{% include disqus.html %}{% endif %}
+
+{% if jekyll.environment == "production" and page.comments != false %}
+  {% include disqus.html %}
+{% endif %}

@@ -67,8 +67,8 @@
     </script>
   {% endif %}
 
-  <!-- Hypothes.is -->
-  {% if jekyll_environment != "production" %}
+  {% if jekyll.environment == "development" %}
+    <!-- Hypothes.is -->
     <script async defer src="https://hypothes.is/embed.js"></script>
   {% endif %}
 

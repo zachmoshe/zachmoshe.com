@@ -22,7 +22,7 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
   <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  {% if page.image %}<meta property="og:image" content="{{ page.image }}">{% endif %}
+  {% if page.image %}<meta property="og:image" content="{{ page.image | prepend: site.url }}">{% endif %}
 
 
   <link rel="apple-touch-icon" sizes="57x57" href="{{ "images/favicons/apple-touch-icon-57x57.png" | prepend: site.baseurl }}">

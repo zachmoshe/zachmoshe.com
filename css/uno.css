@@ -120,6 +120,16 @@ mathpart {
 .blog-quote-by a {
 	color: #999 !important;}
 
+.blog-aboutme {
+	font-size: 0.8em;
+	text-align: center;
+}
+
+.blog-aboutme-larger {
+	font-size: 1em;
+	text-align: center;
+}
+
 
 /*
  * Foundation Icons v 3.0
@@ -1320,7 +1330,7 @@ section.post {
 .panel-cover__divider {
 	width: 50%;
 	margin: 20px auto;
-	border-top: 1px solid rgba(255, 255, 255, 0.14); }
+	border-top: 1px solid rgba(255, 255, 255, 0.3); }
 
 .panel-cover__divider--secondary {
 	width: 15%; }

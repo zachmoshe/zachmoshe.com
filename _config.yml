@@ -1,7 +1,8 @@
 # Site settings
 title: zachmoshe.com
+about_me: Technical Consultant for Risk Management, Fraud Prevention and Data Science 
 description: All about data, data mining and new technologies experiments
-keywords: machine-learning,deep-learning,data-science,data,technology 
+keywords: machine-learning,deep-learning,data-science,data,technology
 quote:
   text: Computers are useless. They can only give you answers.
   by: Pablo Picasso, 1960s

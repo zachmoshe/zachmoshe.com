@@ -1,6 +1,13 @@
 ---
 layout: null
 ---
+socialLinkEvent = function(socialNetwork) {
+  ga('send', 'event', 'SocialLink', 'click', socialNetwork)
+}
+promotedPostEvent = function(postTitle) {
+  ga('send', 'event', 'PromotedPost', 'click', postTitle)
+}
+
 $(document).ready(function () {
   $('a.blog-button').click(function (e) {
     if ($('.panel-cover').hasClass('panel-cover--collapsed')) return

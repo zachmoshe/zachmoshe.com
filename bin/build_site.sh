@@ -6,6 +6,11 @@ if [ -z "$env" ]; then
 	env="development"
 fi
 
+if [ "$env" != "production" ] && [ "$env" != "development" ]; then
+	echo "env must be 'production' or 'development' (or null)"
+	exit 1
+fi
+
 echo JEKYLL_ENV=$env
 JEKYLL_ENV=$env bundle exec jekyll build
 

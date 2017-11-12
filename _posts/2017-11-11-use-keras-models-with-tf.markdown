@@ -2,7 +2,7 @@
 layout: post
 title: Use Keras Pre-Trained Models With Tensorflow
 image: /images/articles/use-keras-models-with-tf/image.png
-tags: keras tensorflow vgg vgg19
+tags: keras tensorflow vgg
 description: >
      Some useful tips for using Keras pre-trained models (keras.applications) in
      your own Tensorflow graphs.

@@ -5,7 +5,7 @@ layout: default
 # About me
 
 I'm a technical consultant for machine learning, mainly interested in risk management applications,
-fraud prevention and behavioural analytics, but not only, any good challenge is welcome!
+fraud prevention and behavioral analytics, but not only, any good challenge is welcome!
 
 In my past, I've led a development team for PayPal dealing with technical solutions for seller risk management,
 and co-founded Wonga's risk management site in Tel-Aviv to tackle fraudsters in the personal loans business.
@@ -21,7 +21,7 @@ I'm a very big fun of all kind of MOOCs and do everything I can to find some tim
 and even [History](https://www.coursera.org/learn/modern-world-2).
 All courses linked above are highly recommended!
 
-My favorite post in the website is [Generating Random Polygons](/2015/11/11/random-polygons.html). It started as a sub task for something else and I absolutely didn't expect it to take that much time. Unfortunately, no-one really searches Google for 'random polygons', and so it is one of the least viewed pages on my site. I still like it! 
+My favorite post in the website is [Generating Random Polygons](/2015/11/11/random-polygons.html). It started as a sub task for something else and I absolutely didn't expect it to take that much time. Unfortunately, no-one really searches Google for 'random polygons', and so it is one of the least viewed pages on my site. I still like it!
 
 Don't hesitate emailing or skyping, I don't bite and if I'm available I'd love to have a chat on almost anything interesting!
 

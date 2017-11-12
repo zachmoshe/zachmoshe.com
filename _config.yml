@@ -1,6 +1,6 @@
 # Site settings
 title: zachmoshe.com
-about_me: Technical Consultant for Risk Management, Fraud Prevention and Data Science 
+about_me: Technical Consultant for Risk Management, Fraud Prevention and Data Science
 description: All about data, data mining and new technologies experiments
 keywords: machine-learning,deep-learning,data-science,data,technology
 quote:
@@ -40,11 +40,11 @@ redcarpet:
 highlighter: rouge
 #markdown: kramdown
 
-kramdown:
+#kramdown:
   # use Github Flavored Markdown
-  input: GFM
+  #input: GFM
   # do not replace newlines by <br>s
-  hard_wrap: false
+  #hard_wrap: false
 
 gems: ['jekyll-paginate']
 exclude: ['LICENSE', 'README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png', 'bin']

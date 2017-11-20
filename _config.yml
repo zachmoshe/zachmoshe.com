@@ -46,5 +46,14 @@ highlighter: rouge
   # do not replace newlines by <br>s
   #hard_wrap: false
 
-gems: ['jekyll-paginate']
-exclude: ['LICENSE', 'README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png', 'bin']
+plugins:
+  - jekyll-paginate
+  - jekyll-assets
+
+exclude: ['LICENSE', 'README.md', 'Gemfile', 'Gemfile.lock', 'bin']
+
+assets:
+  digest: true
+  compress:
+    css: true
+    js: true

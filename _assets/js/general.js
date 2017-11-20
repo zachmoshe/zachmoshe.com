@@ -1,6 +1,3 @@
----
-layout: null
----
 socialLinkEvent = function(socialNetwork) {
   ga('send', 'event', 'SocialLink', 'click', socialNetwork)
 }

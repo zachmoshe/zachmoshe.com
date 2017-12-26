@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Use Keras Pre-Trained Models With Tensorflow
+title: Use Keras Pretrained Models With Tensorflow
 image: /images/articles/use-keras-models-with-tf/image.png
 tags: keras tensorflow vgg
 description: >
-     Some useful tips for using Keras pre-trained models (keras.applications) in
+     Some useful tips for using Keras pretrained models (keras.applications) in
      your own Tensorflow graphs.
 ---
 
@@ -22,15 +22,15 @@ confused by inconsistent behavior, weird occasional errors and messy graphs that
 shamefully admit that I don't really understand what's going on.
 
 After spending some time on that, here are 4 tips that I think will make your life
-easier if you plan to use `Keras` pre-trained models in your `TensorFlow` graphs.
+easier if you plan to use `Keras` pretrained models in your `TensorFlow` graphs.
 I also created my own [wrapper to `VGG19`](#my-vgg19-wrapper) to demonstrate that. Feel free to use as it is
 or adjust to your needs.
 
 
-## Keras Pre-Trained Models
+## Keras Pretrained Models
 
 `Keras` comes with some built-in models that implement famous widely-used applications with  
-their pre-trained weights (on common datasets). This allows you to get results pretty fast and easy:
+their pretrained weights (on common datasets). This allows you to get results pretty fast and easy:
 
 {% highlight python %}
 vgg19 = keras.applications.VGG19(weights='imagenet', include_top=False)
@@ -113,7 +113,7 @@ with tf.Session().as_default():
 
 It's pretty common to create a graph once and run it in many sessions, but here,
 even with a simple use-case we get a weird error. When `Keras` loads our model with
-pre-trained weights, it actually runs an `tf.assign` operation to set the values to
+pretrained weights, it actually runs an `tf.assign` operation to set the values to
 all the weights in the graph. Once we use a new session, this initialization is
 gone and `TensorFlow` is left with uninitialized nodes.
 
@@ -125,7 +125,7 @@ Another solution is to use `model.load_weights(...)` in the new session.
 approach.
 
 
-### 2. tf.global_variables_initializer() will destroy pre-trained weights
+### 2. tf.global_variables_initializer() will destroy pretrained weights
 
 Although implied from the previous section, it's important to understand that
 your weights are variables and will be randomly initialized when calling the
@@ -195,7 +195,7 @@ Here is what it basically does:
   * Deals with VGG preprocessing (subtract VGG_MEAN and flips RGB to BGR)
   * Creates a clean graph. Different parts has different name scopes
   * Saves a checkpoint from the session used when loading the model with the
-  pre-trained weights. Exposes a `load_weights()` method to restore weights from
+  pretrained weights. Exposes a `load_weights()` method to restore weights from
   checkpoint
   * Expose all layers' outputs with `__getitem__` access (`vgg['block5_pool']` for
   example)

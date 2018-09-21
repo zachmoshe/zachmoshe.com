@@ -8,7 +8,7 @@ quote:
   by: Pablo Picasso, 1960s
   url: http://en.wikiquote.org/wiki/Pablo_Picasso#1960s
 url: http://zachmoshe.com
-baseurl: '/'
+baseurl: ''
 google_analytics: UA-54835912-3
 disqus_shortname: zachmoshe
 
@@ -53,6 +53,7 @@ plugins:
 exclude: ['LICENSE', 'README.md', 'Gemfile', 'Gemfile.lock', 'bin']
 
 assets:
+  destination: ''
   digest: true
   compress:
     css: true

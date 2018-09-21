@@ -54,11 +54,11 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.baseurl }}feed.xml">
 
-  {% css main %}
-  {% css main-defer media="none" onload="if(media!=='all')media='all'" %}
+  {% asset main.scss %}
+  {% asset main-defer.scss media="none" onload="if(media!=='all')media='all'" %}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700|Roboto+Slab:300,400" media="none" onload="if(media!=='all')media='all'" />
 
-  {% js main async defer %}
+  {% asset main.js async defer %}
   <script async defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 

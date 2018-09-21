@@ -36,7 +36,7 @@ This is not intended to be a detailed intro to deep learning or convolutional ne
 * [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/index.html) - A free online book by Michael Nielsen that goes over all main topics in DL while opening all the mathematical black boxes that sometimes remain closed.  
 * [How Convolutional Neural Networks Work](http://brohrer.github.io/how_convolutional_neural_networks_work.html) - Another nice post, with examples, on how convolutional layers work.
 
-I've heavily used Jupyter Notebook as my main IDE. All notebooks are in my [GitHub repo](https://github.com/zachmoshe/zachmoshe.com/tree/master/content/simpsons-detector) (GitHub has a nice renderer for ipynb files). I've also arranged some of the code into `general` and `simpsons` python packages and those are also available [here](https://github.com/zachmoshe/datalab). You are more than welcome to have a look although the whole post should be readable even without diving into the code.
+I've heavily used Jupyter Notebook as my main IDE. All notebooks are in my [GitHub repo](https://github.com/zachmoshe/zachmoshe.com/tree/master/content/simpsons-detector) (GitHub has a nice renderer for ipynb files). I've also arranged some of the code into `general` and `simpsons` python packages and those are also available [here](https://github.com/zachmoshe/general-tools). You are more than welcome to have a look although the whole post should be readable even without diving into the code.
 
 
 ***
@@ -102,7 +102,7 @@ Below are some examples of test images:
 
 Data scientists like to say that 80% of every project has nothing to do with models, networks and other fancy stuff and is only about a painfully, rigorous work of obtaining and cleaning the data. In a similar way, I can admit that looking back, more than 95% of my time was spent on improving the frames generator and not the network architecture. The frames generator was also proven to be responsible for all performance boosts I had throughout this journey. Almost every time I improved the way I stitch images together, the augmentations I do to images or background choosing, I immediately saw the affect on performance.
 
-The generator is implemented in the [`SimpsonsFrameGenerator`](https://github.com/zachmoshe/datalab/blob/master/simpsons/preprocessing/simpsons_frame_generator.py) class and complies with Keras's generators API. it returns an iterator that yields a batch of `X` and `y` every time `next()` is called on it. Every single frame is generated as follows (high-level, a more detailed description will follow):
+The generator is implemented in the [`SimpsonsFrameGenerator`](https://github.com/zachmoshe/general-tools/blob/master/simpsons/preprocessing/simpsons_frame_generator.py) class and complies with Keras's generators API. it returns an iterator that yields a batch of `X` and `y` every time `next()` is called on it. Every single frame is generated as follows (high-level, a more detailed description will follow):
 
 * Choose a random background
 * Choose the number of characters we want to add to the frame (could also be 0)

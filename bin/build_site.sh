@@ -11,8 +11,14 @@ if [ "$env" != "production" ] && [ "$env" != "development" ]; then
 	exit 1
 fi
 
+if [ "$env" == "development" ]; then
+	extra_args="--drafts"
+else
+	extra_args=""
+fi
+
 echo JEKYLL_ENV=$env
-JEKYLL_ENV=$env bundle exec jekyll build
+JEKYLL_ENV=$env bundle exec jekyll build $extra_args
 
 # I have no idea how to get rid of this file
 rm -fr _site/assets/.sprockets-manifest-*.json

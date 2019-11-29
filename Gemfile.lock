@@ -98,7 +98,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll
+  jekyll (>= 3.8.4)
   jekyll-assets (>= 3.0.11)
   jekyll-paginate
   pygments.rb

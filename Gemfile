@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 #gem 'github-pages'
-gem 'jekyll', '>= 3.8.4'
+gem 'jekyll', '>= 4.0.0'
 gem 'jekyll-paginate'
 gem 'jekyll-assets', '>= 3.0.12'
 gem 'pygments.rb'

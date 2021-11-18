@@ -10,7 +10,7 @@ description: >
 
 Recently, the TensorFlow team [announced their public 2.0 beta API](https://www.tensorflow.org/beta)
 and I thought that would make a perfect excuse to see what has changed (and
-plenty should have change from the 1.x API...).
+plenty should have changed from the 1.x API...).
 
 [Keras is now the recommended
 high level API](https://medium.com/tensorflow/standardizing-on-keras-guidance-on-high-level-apis-in-tensorflow-2-0-bad2b04c819a)
@@ -53,9 +53,9 @@ $$
 $$
 
 
-(Notice that not like in the normal distribution PDF case, this expression is
+(Notice that unlike in the normal distribution PDF case, this expression is
 slightly different as it doesn't integrate to one. We use an arbitrary weight \\(a\\)
-for every gaussian)
+for every gaussian).
 
 Our data will consist of datapoints and their y value, and we'll try to recover
 the centers, covariance matrices and amplitudes of the K gaussians that were
@@ -73,8 +73,8 @@ can be modeled as a gaussian centered at the city center. The covariance matrix 
 represent how spread the city's population is, and the amplitude represents
 the number of people living there.
 
-With this simplification of the world (and consumers behavior..) we can now say
-that the number of customers that a specific store sees, is a sum of the number
+With this simplification of the world (and consumers' behavior..), we can now say
+that the number of customers that a specific store sees is the sum of the number
 of visitors it got from each city. Let's look at a 1D world:
 
 ![Two stores example](/images/articles/sog-layer-with-keras/two-stores.png)
@@ -95,8 +95,8 @@ A Model in Keras is ([in its most basic form](http://faroit.com/keras-docs/2.0.0
 a sequence of layers leading from the inputs to the final prediction.
 
 In order to use a layer in a [non-sequential](http://faroit.com/keras-docs/2.0.0/getting-started/functional-api-guide/)
-model we need to understand the separation between building a layer and invoking
-it with inputs. When we building a layer, we create Tensorflow variables for all
+model we need to understand the difference between building a layer and invoking
+it with inputs. When building a layer, we create Tensorflow variables for all
 required weights. When we want to calculate our layer's output, we call its
 instance with the input tensors. This allows us to share weights between some
 parts of the model (when using the same layer instance).
@@ -117,12 +117,12 @@ there are 3 important methods we need to understand:
   shape here (we don't have the inputs at this point). For example: general
   parameters, inner layers objects, etc...
   * **build(input_shape):** Here we already know our input shape, therefore, we
-  can create actual variables. For example - A Dense layer will create the `kernel`
+  can create actual variables. For example, a Dense layer will create the `kernel`
   and `bias` variables here.
   * **call(inputs):** This is where we define the forward pass of our calculation.
 
 
-## Implementing a first version of SumOfGaussians
+## Implementing an initial version of SumOfGaussians
 
 After we've mastered the `keras.Layer` API, let's move on to implement a layer
 that fits our sum of gaussians model. We'll build the model for a known value of
@@ -157,7 +157,7 @@ class SumOfGaussians(tf.keras.layers.Layer):
         return result
 {% endhighlight %}
 
-So far - nothing complicated. We created the variables in the `build()` method and
+So far - nothing too complicated. We created the variables in the `build()` method and
 generated the model's output by summing the values from each gaussian. The
 `calculate_multivariate_gaussian` method is just the expression for a single
 gaussian function value given amplitude, mean, covariance and an input vector.
@@ -172,12 +172,12 @@ an opportunity to demonstrate another Keras way of doing things:
 
 ### One can not just perform SGD on a covariance matrix
 
-The `sigmas` variable suppose to hold the covariance matrices for the K gaussians.
+The `sigmas` variable is supposed to hold the covariance matrices for the K gaussians.
 Every covariance matrix has to be [positive semi-definite](https://en.wikipedia.org/wiki/Definiteness_of_a_matrix#Negative-definite,_semidefinite_and_indefinite_matrices)
-and ours even has to be invertible. So our first problem hits us even before
+and ours even has to be invertible. Our first problem hits us even before
 running the first batch through our layer. Weights are initialized randomly by
-default, meaning our `sigmas` variable contain random values and possibly not
-PSD to begin with. We can solve that by overriding the initializer to use for
+default, meaning our `sigmas` variable contains random values and possibly not
+PSD to begin with. We can solve this by overriding the initializer to use for
 this weight.
 
 For simplicity, let's initialize all matrices to the identity matrix. An
@@ -204,15 +204,15 @@ class SumOfGaussians:
 Looks like we're safe for now, but what happens after the first SGD iteration?
 If we recall how SGD works, we perform a forward pass through our network, get a
 final value, calculate a loss based on the true value and calculate gradients on
-the loss with respect to all weights. Then we modify the weights values based on
+the loss with respect to all weights. Then we modify the weights' values based on
 the computed gradients.
 
-This means that even while our covariance matrix started with a valid value,
+This means that even though our covariance matrix started with a valid value,
 nothing assures us that it will remain valid after the back-propogation step.
-In order to solve that, we'll use a little trick - we'll use the fact that every
+In order to solve this, we'll use a little trick - we'll use the fact that every
 matrix multiplied by its transpose is positive semi-definite.
-Meaning we can actually perform our SGD on a "pseudo_covariance" matrix, and when
-we need the true covariance matrix for calculation, just use
+Meaning, we can actually perform our SGD on a "pseudo_covariance" matrix, and when
+we need the true covariance matrix for calculation, we can simply use
 \\( AA^T + \\epsilon I\\) (we're also adding an identity matrix multiplied by a small factor to avoid singular
 matrices).
 
@@ -227,10 +227,10 @@ Our `means` will be initialized with `glorot_uniform` by default.
 This returns values centered around zero with relatively small standard deviation.
 This might work if the true centers are around zero, but if not, our model will
 have a hard time trying to move the centers. Recall that if we're too far away from
-the gaussian center, it's contribution to the sum is almost zero and gradient
+the gaussian center, its contribution to the sum is almost zero and the gradient's
 direction won't lead us anywhere.
 
-This is why we want centers to initialize all around the practical input space.
+This is why we want to initialize the centers all around the practical input space.
 Since we don't know that in advance, we'll allow the user to pass `centers_min`
 and `centers_max` when constructing the layer. This will helps us initialize
 the centers uniformly in that range.
@@ -271,7 +271,7 @@ of 1.0 and an amplitude of 1.0, but we set `K=2` in our model so we are going to
 find a sum of 2 gaussians that fit this data.
 
 One possible solution would be two gaussians that have the same center and
-covariance matrix, and their amplitudes will sum to 1.0 (Example #1).
+covariance matrix, and their amplitudes will sum up to 1.0 (Example #1).
 Another solution could be two completely different gaussians which are summed up
 to a gaussian very close to our original one (Example #2).
 
@@ -282,8 +282,8 @@ We'll try to come up with heuristic solutions to these problems:
 ### L1 regularizer on the amplitudes
 
 I could guess that in a real-world scenario, if I overestimated K, I'd ideally
-want excess gaussians to have amplitude of 0.0, therefore easily excluded from
-the analysis. You can think of Example #1, when one of the amplitudes is exactly
+want excess gaussians to have an amplitude of 0.0 so I can easily exclude them from
+my analysis. You can think of Example #1, when one of the amplitudes is exactly
 0.0 and the second is exactly the original one. Currently our model doesn't penalize
 when two gaussians are "splitting the amplitude". We want it to prefer a setup
 where one amplitude is canceled (equals to 0.0) while only the other converges to
@@ -328,14 +328,14 @@ Conveniently enough, Keras already has an implementation of the `tf.keras.constr
 constraint which we'll add to the `amps` weight ([code here](https://github.com/zachmoshe/zachmoshe.com-sog-layer/blob/master/sum_of_gaussians.py#L68)).
 
 
-## Let's play with that a little bit
+## Let's play with it a little bit
 
 All examples here were run with [this Colab](https://colab.research.google.com/drive/1nBYEXSNlf5ScJ0XgE8eG_8MRm4gHMpCD#scrollTo=0wfDlnWcVjax&forceEdit=true&offline=true&sandboxMode=true),
 feel free to spin your own machine (it's free!) and run your own experiments.
-It should be pretty self explained and hopefully works out of the box.
+It should be pretty self-explanatory and hopefully works out of the box.
 
 After running all cells at the beginning of the notebook (imports, inits, ...),
-I'm using the `Solve a single problem` section to actually running the model.
+I'm using the `Solve a single problem` section to actually run the model.
 
 The first step is to generate some random data. I've chosen 4 gaussians and got
 this data generated (your milage **will** vary):
@@ -354,7 +354,7 @@ assumes we know (or guess) K correctly. I chose `K=6` although we generated the
 ground truth data with only 4 gaussians, so we can see what happens when there
 are "extra" gaussians in the fitted model.
 
-First, I'm building a simple Keras model, which will have a `D` size vector as
+I'm building a simple Keras model, which will have a `D` size vector as
 an input (2D in our case) and a single `SumOfGaussians` layer. The layer's output
 (the sum of gaussians) will be the model's output in our case and will be compared
 to the `y_train` data we've generated.
@@ -396,14 +396,14 @@ loss together with losses that were created by inner layers in the model (for ex
 `SumOfGaussians` layer).
 When reporting results I only care about the `MSE` loss, so I gave a name to the
 "regular" output and set a `MSE` metric on it. That way, when Keras automatically
-report the total `loss` and `val_loss`, it will also report the `mse` and `val_mse`
+reports the total `loss` and `val_loss`, it will also report the `mse` and `val_mse`
 which will contain only the `MSE` component of the total loss.
 
 ### Fitting a model without regularizers
 
 As a first step, let's fit the model without any additional regularizers (the L1
 regularizer that should push unused amplitudes to 0.0 and the pairwise distance
-loss that should push centers away from each other). Results could vary a lot with
+loss that should push centers away from each other). Results can vary a lot with
 random initialization, so everything going forward is the output of a single run.
 If you run the same Colab yourself, you might get different results.
 
@@ -425,14 +425,14 @@ final sum.
 It's interesting to see how we composed each of the 2 large gaussians on the left
 with 2 learned gaussians, that together gave us a similar result. The green learned
 gaussian matched almost exactly the orange one and the one on the bottom right was
-completely missed. The third chart will give us some hints on why did that happen:
+completely missed. The third chart will give us some hints on why this happened:
 
 ![Learned gaussians over epochs](/images/articles/sog-layer-with-keras/single-expr-no-regs-image3.png)
 
-This is a bit more complex chart - we see a "line of x markers" for every gaussian
-center, representing it's location along the epochs so we can track gaussians
+This chart is a bit more complex - we see a "line of x markers" for every gaussian
+center, representing its location along the epochs so we can track gaussians
 during the training process.
-The small arrow shows as the initial location (randomly assigned), while the circle
+The small arrow shows the initial location (randomly assigned), while the circle
 is the final position. The 4 large Xs are the ground truth centers.
 
 We can observe some nice patterns here: The pink one, right in the middle, was
@@ -447,7 +447,7 @@ that earlier in the "Model predictions" heatmap).
 
 Then we have brown, green and purple which were initialized far from real gaussians
 and just "got lost" during the process. We can see them in the "Learned Gaussians"
-chart (notice that colors don't match) but they don't match any real gaussian and
+chart (notice that the colors don't match) but they don't match any real gaussian and
 also have a small amplitude and a vary narrow covariance matrix.
 
 Sadly, no center was initialized next to the gaussian at the bottom right, and no
@@ -475,8 +475,8 @@ Well, we can see some nice things here, but first, some notations: In the "Learn
 Gaussians" and the "Centers per Epoch", gray lines mean gaussians that ended up
 with very small amplitudes (meaning - can be completely ignored).
 
-First, we see how the L1 regularizer helped us eliminating the amplitudes of 5
-our of the 8 learned gaussians! Leaving us with a single gaussian learned for 3
+First, we see how the L1 regularizer helped us eliminate the amplitudes of 5
+out of the 8 learned gaussians! Leaving us with a single gaussian learned for 3
 of the main ground-truth ones, but completely missing the narrow one in the middle.
 This is a problem that's hard to avoid if the real data contains gaussians
 with a very narrow covariance matrix. These gaussians affect a very small area
@@ -505,7 +505,7 @@ miss, at least the large centers of datapoints. Notice however, that if our K is
 too small, and there are outlier datapoints, we'll probably miss those as we'll
 initialize all centers around the large clusters.
 
-1. Another nice idea is to train with very high `K`, and maybe a stronger `L1`
+1. Another nice idea is to train with a very high `K`, and maybe a stronger `L1`
 regularizer factor. This should allow us to have some centers close to every real
 center, but also "killing" all excess ones through the process. A more advanced
 approach, but a bit more complex to implement, is to start with a very high `K`,

@@ -34,17 +34,18 @@ defaults:
 destination: _site
 paginate: 10
 permalink: :year/:month/:day/:title.html
-markdown: redcarpet
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
 highlighter: rouge
-#markdown: kramdown
 
-#kramdown:
+# markdown: redcarpet
+# redcarpet:
+#   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
+
+markdown: kramdown
+kramdown:
   # use Github Flavored Markdown
-  #input: GFM
+  input: GFM
   # do not replace newlines by <br>s
-  #hard_wrap: false
+  hard_wrap: true
 
 plugins:
   - jekyll-paginate

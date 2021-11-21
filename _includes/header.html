@@ -110,26 +110,6 @@
 
         </div>
 
-
-        {% if page.layout == 'post' %}
-          <div class="panel-cover__more-links">
-            <hr class="panel-cover__divider panel-cover__divider--secondary">
-
-            More from {{ site.title }}:
-            <ul>
-              {% assign promoted_posts = site.posts | sort: 'date' | reverse %}
-              {% for post in promoted_posts limit:3 %}
-                <li>
-                  <a href="{{ post.url }}" onclick="promotedPostEvent('{{ post.title }}')">
-                    <img class="panel-cover__more-links-image" src="{{ post.image }}"/>
-                    {{ post.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-
       </div>
 
     </div>

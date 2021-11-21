@@ -119,7 +119,7 @@ We denoted before \\( E_N(k) \\) as the expected number of blocks of size *k* in
     \begin{align}
      E_N(k) & = E \left(  \sum\limits_{i=1}^N { X_i^k } \right) \\\\
      & = E(X_1^k) + E(X_2^k) + \cdots + E(X_N^k)         &&\text{from linearity of expectation}  \\\\
-     & = P(X_1^k) + P(X_2^k) + \cdots + P(X_N^k)         &&\text{X get 0 or 1 with probability P}\\\\
+     & = P(X_1^k) + P(X_2^k) + \cdots + P(X_N^k)         &&\text{X gets 0 or 1 with probability P}\\\\
      & = NP(X)                                           &&\text{from symmetry - all P's are the same}
     \end{align} \\\\
     \text{(Where } P(X) \text{ is the probability for a block of size } k \text{)}
@@ -145,7 +145,7 @@ Given that expression, the expected number of blocks in a row would be a summati
 
 <div class="showmath">Don't believe me? Click here to open the math section</div>
 
-<mathpart>
+<div class="mathpart" markdown="1">
 The total number of blocks in a row is the sum of all possible blocks:
 \\[
 \begin{align}
@@ -158,7 +158,7 @@ The total number of blocks in a row is the sum of all possible blocks:
     & = Np + (1-p)^N
 \end{align}
 \\]
-</mathpart>
+</div>
 
 
 ### Verify the \\(E_N(k) \\) Expression for a Cyclic Row
@@ -169,7 +169,7 @@ As we defined, \\( E_N(k) \\) is an expression for how the expected number of bl
 \\]
 
 <div class="showmath">And it does hold. But if we've completely lost trust in this relationship, you know where to click...</div>
-<mathpart>
+<div class="mathpart" markdown="1">
 First, let's look on the general summation of \\( iX^i \\):
 \\[
 \begin{align}
@@ -197,7 +197,7 @@ And, for the specific summation we're after:
     & = N
 \end{align}
 \\]
-</mathpart>
+</div>
 
 
 Another thing we can do is to simulate many random cyclic rows, count the number of blocks and compare to the estimator we got here. Ohh, how lucky I am to know python ([code is here](https://github.com/zachmoshe/zachmoshe.com-random-polygons/blob/master/Random%20Polygons%20Part%201.ipynb)).
@@ -285,7 +285,7 @@ And that clearly equals:
 \\]
 
 <div class="showmath">I said clearly. Trust me, don't open this...</div>
-<mathpart>
+<div class="mathpart" markdown="1">
 First, recall our proof from before that:
 \\[
     \sum\limits_{i=1}^N { iX^i } = X + 2X^2 + 3X^3 + 4X^4 + \cdots = \cdots = \frac{ NX^{N+2}-(N+1)X^{N+1}+X }{ (X-1)^2 }
@@ -338,7 +338,7 @@ And finally:
     \end{align}
 \\]
 **Told ya'**
-</mathpart>
+</div>
 
 I'm using this exact expression to evaluate and represent the block size when the user plays with values of *p* in the example at the beginning of the post.
 

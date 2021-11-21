@@ -62,7 +62,7 @@ body {
     font-style: italic;
     cursor: pointer; }
 
-mathpart {
+.mathpart {
   	display: block;
 		background: #f9f9f9;
 		border-left: 7px solid #ccc;

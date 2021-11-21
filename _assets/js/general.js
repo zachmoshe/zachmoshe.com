@@ -45,9 +45,9 @@ $(document).ready(function () {
   })
 
   // hide all math after .showmath
-  $(".showmath").next("p,mathpart").find("mathpart").hide();
+  $(".showmath").next("div,mathpart").find("mathpart").hide();
   $(".showmath").click(function() {
-      $(this).next("p,mathpart").find("mathpart").slideToggle();
+      $(this).next("div,mathpart").find("mathpart").slideToggle();
   })
 
 

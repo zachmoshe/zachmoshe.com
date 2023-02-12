@@ -108,7 +108,7 @@ DEPENDENCIES
   jekyll-paginate
   kramdown-parser-gfm
   pygments.rb
-  sprockets (~> 3.7)
+  sprockets (~> 3.7, >= 3.7.2)
 
 BUNDLED WITH
    2.1.4
